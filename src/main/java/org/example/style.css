@@ -1,0 +1,33 @@
+/* Общие настройки для кнопки */
+.button {
+  -fx-background-color: transparent;
+  -fx-text-fill: #333333;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-padding: 0;
+}
+
+/* Основной стиль для круглой кнопки */
+.button.circular {
+  -fx-background-radius: 50%;
+  -fx-background-color: #4CAF50;
+  -fx-min-width: 40px;
+  -fx-min-height: 40px;
+  -fx-max-width: 40px;
+  -fx-max-height: 40px;
+  -fx-alignment: center;
+}
+
+/* Настройки для символа "+" внутри круга */
+.button.circular .plus {
+  -fx-text-fill: #FFFFFF;
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Arial";
+  -fx-alignment: center;
+}
+.button:pressed {
+  -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 10, 0, 0, 3);
+  -fx-background-color: #0099ff;
+  -fx-text-fill: white;
+}

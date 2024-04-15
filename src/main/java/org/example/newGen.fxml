@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import com.gluonhq.charm.glisten.control.Avatar?>
+<?import com.gluonhq.charm.glisten.control.ProgressBar?>
+<?import com.gluonhq.charm.glisten.control.ProgressIndicator?>
+<?import com.gluonhq.charm.glisten.mvc.SplashView?>
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<VBox fx:id="vbMenu" prefHeight="1212.0" prefWidth="1156.0" styleClass="vbox" stylesheets="@styletgVbox.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller">
+  <children>
+    <MenuBar prefHeight="16.0" prefWidth="1117.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu fx:id="menuOpenFile" mnemonicParsing="false" text="Файл">
+          <items>
+            <MenuItem fx:id="menuOpenDec" mnemonicParsing="false" text="Открыть демодулированный файл" />
+            <MenuItem fx:id="menuOpenTable" mnemonicParsing="false" text="Открыть таблицу декодирования" />
+                  <MenuItem fx:id="menuSaveResult" mnemonicParsing="false" text="Сохранить результат декодирования" />
+          </items>
+        </Menu>
+        <Menu fx:id="menuHelp" mnemonicParsing="false" text="Справка" />
+      </menus>
+    </MenuBar>
+    <SplitPane fx:id="superParentPane" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <ScrollPane fx:id="parentPane" prefHeight="1179.0" prefWidth="1140.0">
+          <content>
+            <AnchorPane id="Content" fx:id="myPane" minHeight="-1.0" minWidth="-1.0" prefHeight="1135.0" prefWidth="1153.0" styleClass="anchor-pane" stylesheets="@styletgAnchorPaneTg.css">
+              <children>
+                        <TextArea fx:id="IsxTA" layoutX="6.0" layoutY="202.0" prefHeight="460.0" prefWidth="553.0" styleClass="text-area" stylesheets="@styletgTextArea.css" wrapText="true">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="DecButton" layoutX="507.0" layoutY="122.0" minHeight="33.0" minWidth="34.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="34.0" styleClass="circular" stylesheets="@styletg.css" text="+" />
+                        <Slider fx:id="slider" layoutX="437.0" layoutY="41.0" prefHeight="25.0" prefWidth="223.0" showTickLabels="true" showTickMarks="true" />
+                        <Label layoutX="288.0" prefHeight="41.0" prefWidth="521.0" text="Процент допустимых ошибок в каждой последовательности">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sliderLabel" layoutX="539.0" layoutY="76.0" prefHeight="41.0" prefWidth="61.0" text="0%" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                  <TextArea fx:id="SooTA" layoutX="577.0" layoutY="202.0" prefHeight="460.0" prefWidth="553.0" stylesheets="@styletgTextArea.css" wrapText="true">
+                      <font>
+                          <Font name="Times New Roman" size="16.0" />
+                      </font>
+                           <styleClass>
+                              <String fx:value="text-area" />
+                              <String fx:value="content" />
+                           </styleClass>
+                  </TextArea>
+
+                  <TextArea fx:id="SooqTA" layoutX="9.0" layoutY="720.0" prefHeight="449.0" prefWidth="547.0" wrapText="true">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </TextArea>
+                        <TextArea fx:id="DecTA" layoutX="570.0" layoutY="699.0" prefHeight="460.0" prefWidth="553.0" style="-fx-background-radius: 10; -fx-padding: 10;" wrapText="true">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="201.0" layoutY="155.0" prefHeight="41.0" prefWidth="142.0" text="Исходный файл" textFill="#dbd9d9">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="678.0" layoutY="155.0" prefHeight="41.0" prefWidth="314.0" text="Обнаруженные последовательности" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="55.0" layoutY="667.0" prefHeight="41.0" prefWidth="447.0" text="Обнаруженные последовательности в цифрах [0,4]" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="673.0" layoutY="667.0" prefHeight="41.0" prefWidth="324.0" text="Декодированные последовательности" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="CheckBox1" layoutX="411.0" layoutY="162.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="240.0" text="Синхронная прокрутка" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </CheckBox>
+                        <TableView layoutX="201.0" layoutY="266.0" prefHeight="479.0" prefWidth="527.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C1" />
+                          </columns>
+                        </TableView>
+                        <MenuButton layoutX="173.0" layoutY="97.0" mnemonicParsing="false" text="MenuButton">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                        </MenuButton>
+                        <ScrollBar layoutX="158.0" layoutY="135.0" />
+                        <Spinner layoutX="283.0" layoutY="137.0" />
+                        <ToggleButton layoutX="244.0" layoutY="29.0" mnemonicParsing="false" text="ToggleButton" />
+                        <WebView layoutX="847.0" layoutY="246.0" prefHeight="341.0" prefWidth="289.0" />
+                        <Avatar layoutX="93.0" layoutY="124.0" />
+                        <ProgressIndicator layoutX="242.0" layoutY="146.0" progress="0.0" />
+                        <SplashView layoutX="68.0" layoutY="261.0" prefHeight="71.0" prefWidth="105.0" />
+                        <View layoutX="110.0" layoutY="486.0" prefHeight="61.0" prefWidth="37.0" />
+                        <ProgressBar layoutX="11.0" layoutY="598.0" prefHeight="48.0" prefWidth="200.0" progress="0.44" />
+                        <AmbientLight color="CHARTREUSE" layoutX="242.0" layoutY="163.0" lightOn="true" />
+                        <AmbientLight layoutX="129.0" layoutY="840.0">
+                           <color>
+                              <Color red="0.5" green="1.0" />
+                           </color>
+                        </AmbientLight>
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+      </items>
+    </SplitPane>
+    <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="1575.0" spacing="5.0" VBox.vgrow="NEVER">
+      <children>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>

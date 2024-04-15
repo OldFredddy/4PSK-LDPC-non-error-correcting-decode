@@ -1,0 +1,40 @@
+package org.example;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AdditiveDescrambler {
+
+    private final int polynomialDegree1 = 13; // С учетом индексации с 0
+    private final int polynomialDegree2 = 14; // С учетом индексации с 0
+    private final int blockSize = 114; // размер блока данных в битах
+    private List<Byte> lfsr; // регистр сдвига
+    private static final String PSP = "101101101101101110110110110110011011011011010101101101101111110110110110000011011011010000101101101110001110110110010010011011010110110101101111011011110110001101100011010010110100101110111011101110011001100110010101010101010111111111111111000000000000001000000000000011000000000000101000000000001111000000000010001000000000110011000000001010101000000011111111000000100000001000001100000011000010100000101000111100001111001000100010001011001100110011101010101010100111111111111101000000000000111000000000001001000000000011011000000000101101000000001110111000000010011001000000110101011000001011111101000011100000111000100100001001001101100011011010110100101101111011101110110001100110011010010101010101110111111111110011000000000010101000000000111111000000001000001000000011000011000000101000101000001111001111000010001010001000110011110011001010100010101011111100111111100000101000000100001111000001100010001000";
+
+
+    public AdditiveDescrambler() {
+        initializeLfsr("101101101101101");
+    }
+
+    private void initializeLfsr(String seed) {
+        lfsr = new ArrayList<>();
+        for (int i = 0; i < seed.length(); i++) {
+            lfsr.add((byte) (seed.charAt(i) == '1' ? 1 : 0));
+        }
+    }
+
+    public List<Byte> descramble(List<Byte> inputData) {
+
+
+        return addWithPSP(inputData);
+    }
+    public List<Byte> addWithPSP(List<Byte> data) {
+        List<Byte> result = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            int bitData = data.get(i);
+            int bitPSP = PSP.charAt(i) == '1' ? 1 : 0;
+            result.add((byte) ((bitData + bitPSP) % 2));
+        }
+        return result;
+    }
+}
